@@ -5,23 +5,25 @@ import AddNote from './AddNote';
 
 const Notes = () => {
   const context = useContext(noteContext);
-  const { notes, getNote } = context;
+  const { notes, getNote, editNote } = context;
   useEffect(() => {
     getNote()
     // eslint-disable-next-line
   }, [])
 
   const ref = useRef(null);
-  const [note, setNote] = useState({etitle : "", edescription : "", etag : ""})
+  const refClose = useRef(null);
+  const [note, setNote] = useState({id: "" , etitle : "", edescription : "", etag : ""})
 
   const updateNote = (currentNote) => {
     ref.current.click();
-    setNote({etitle: currentNote.title, edescription:currentNote.description, etag : currentNote.tag} )
+    setNote({id: currentNote._id , etitle: currentNote.title, edescription:currentNote.description, etag : currentNote.tag} )
 
   }
   const handleclick = (e) => {
-    console.log("update...", note)
+    editNote(note.id , note.etitle, note.edescription , note.etag);
     e.preventDefault();
+    refClose.current.click();
   }
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value })
@@ -57,17 +59,17 @@ const Notes = () => {
                   </div>
                   <div className="form-group">
                     <label htmlFor="edescription">Description</label>
-                    <input type="text" className="form-control" id="edescription" name='edescription' onChange={onChange} value={note.edescription} placeholder="Password" />
+                    <input type="text" className="form-control" id="edescription" name='edescription' onChange={onChange} value={note.edescription} minLength={2} required placeholder="Password" />
                   </div>
                   <div className="form-group">
                     <label htmlFor="etag">Tag</label>
-                    <input type="text" className="form-control" id="etag" name='etag' onChange={onChange} value={note.etag} placeholder="Password" />
+                    <input type="text" className="form-control" id="etag" name='etag' onChange={onChange} value={note.etag} placeholder="Password" minLength={2} required />
                   </div>
                 </form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button onClick={handleclick} type="button" className="btn btn-primary">Update Note</button>
+                <button ref={refClose} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button disabled={note.etitle.length<2 || note.edescription.length<2} onClick={handleclick} type="button" className="btn btn-primary">Update Note</button>
               </div>
             </div>
           </div>
@@ -78,6 +80,11 @@ const Notes = () => {
       <div>
         <div className='row my-3'>
           <h1>Your notes</h1>
+
+          <div className="container">
+          {notes.length===0 && 'No Notes Added You'}
+          </div>
+
           {notes.map((note) => {
             return <NoteItem key={note._id} updateNote={updateNote} note={note} />
           })}
