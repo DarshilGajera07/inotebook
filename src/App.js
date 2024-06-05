@@ -9,6 +9,8 @@ import Home from './components/Home';
 import About from './components/About';
 import NotesState from './context/notes/NotesState';
 import Aleart from './components/Aleart';
+import Login from './components/Login';
+import Singup from './components/Singup';
 function App() {
   return (
     <>
@@ -20,6 +22,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Singup />} />
           </Routes>
           </div>
       </NotesState>

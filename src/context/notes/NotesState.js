@@ -10,7 +10,7 @@ const NotesState = (props) => {
   //Get allnote
   const getNote = async () => {
     //API Call
-    const response = await fetch(`${host}/api/notes/fetchallnotes`, {
+    const response = await fetch(`${host}/api/notes/fetchallnotes`,   {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
