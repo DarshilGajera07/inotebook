@@ -63,15 +63,16 @@ const Login = (props) => {
                                         <p className="text-white-50 mb-5">Please enter your login and password!</p>
 
                                         <div data-mdb-input-init className="form-outline form-white mb-4">
-
-                                            <label className="form-label" for="typeEmailX">Email</label>
-                                            <input type="email" onChange={onChange} value={credentials.email} id="email" name='email' aria-describedby="emailHelp" placeholder="Enter email" className="form-control form-control-lg" />
+                                            <input type="email" onChange={onChange} value={credentials.email} id="email" name='email' aria-describedby="emailHelp" className="form-control form-control-lg" />
+                                            <label className="form-label" htmlFor="email">Email</label>
 
                                         </div>
 
+                    
+
                                         <div data-mdb-input-init className="form-outline form-white mb-4">
-                                            <label className="form-label" for="typePasswordX">Password</label>
-                                            <input type="password" onChange={onChange} value={credentials.password} id="password" name='password' placeholder="Password" className="form-control form-control-lg" />
+                                            <input type="password" onChange={onChange} value={credentials.password} id="password" name='password'  className="form-control form-control-lg" />
+                                            <label className="form-label" htmlFor="password">Password</label>
                                         </div>
 
                                         <p className="small mb-5 pb-lg-2"><a className="text-white-50" href="#!">Forgot password?</a></p>

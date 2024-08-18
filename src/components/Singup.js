@@ -1,19 +1,19 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const Singup = (props) => {
   let navigate = useNavigate();
-  const [credentials, setCredential] = useState({name: "", email: "", password: "", cpassword: ""});
+  const [credentials, setCredential] = useState({ name: "", email: "", password: "", cpassword: "" });
 
   const handleSubmit = async (e) => {
-    const {name, email, password} = credentials
+    const { name, email, password } = credentials
     e.preventDefault();
     const response = await fetch("http://localhost:5000/api/auth/createuser", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({name, email, password})
+      body: JSON.stringify({ name, email, password })
     });
 
     const json = await response.json()
@@ -39,27 +39,46 @@ const Singup = (props) => {
   return (
     <div>
       <div className='container'>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input type="text" className="form-control" onChange={onChange} id="name" aria-describedby="emailHelp" placeholder="Enter email" name='name' />
-          </div> required minLength={2}
-          <div className="form-group">
-            <label htmlFor="email">Email address</label>
-            <input type="email" className="form-control" onChange={onChange} id="email" aria-describedby="emailHelp" placeholder="Enter email" name='email' />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input type="password" className="form-control" onChange={onChange} id="password" placeholder="Password" name='password' required minLength={2} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="cpassword">Confirm Password</label>
-            <input type="cpassword" className="form-control" onChange={onChange} id="cpassword" placeholder="Password" name='cpassword' required minLength={2} />
-          </div>
+        <form onSubmit={handleSubmit} className="vh-100 gradient-custom">
+          <div className="container py-5 h-100">
+            <div className="row d-flex justify-content-center align-items-center h-100">
+              <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div className="card bg-dark text-white">
+                  <div className="card-body p-5 text-center">
 
-          <button type="submit" className="btn btn-primary">Submit</button>
+                    <div className="mb-md-5 mt-md-4 pb-5">
+
+                      <h2 className="fw-bold mb-2 text-uppercase">Signup</h2>
+                      <p className="text-white-50 mb-5">Please enter your Details</p>
+
+
+                      <div className="form-group">
+                        <label htmlFor="name">Name</label>
+                        <input type="text" className="form-control" onChange={onChange} id="name" aria-describedby="emailHelp" placeholder="Enter Name" name='name' required minLength={2} />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="email">Email address</label>
+                        <input type="email" className="form-control" onChange={onChange} id="email" aria-describedby="emailHelp" placeholder="Enter email" name='email' />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" className="form-control" onChange={onChange} id="password" placeholder="Password" name='password' required minLength={2} />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="cpassword">Confirm Password</label>
+                        <input type="cpassword" className="form-control" onChange={onChange} id="cpassword" placeholder="Confirm Password" name='cpassword' required minLength={2} />
+                      </div>
+
+                      <button type="submit" className="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </form>
-      </div></div>
+      </div>
+    </div>
   )
 }
 
