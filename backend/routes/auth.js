@@ -94,6 +94,7 @@ router.post('/login', [
         res.json({ success, authtoken })
 
         }  catch (error) {
+      // eslint-disable-next-line no-unused-expressions
       console.log(error.message),
         res.status(500).send("Internal server error.");
     }
@@ -103,11 +104,12 @@ router.post('/login', [
   //ROUTE 3 :Get login user detail using : POST "/api/auth/getuser" ,require login.
   router.post('/getuser', fetchuser ,async (req, res) => {
 try {
-  userId = req.user.id;
+  const userId = req.user.id;
   const user = await User.findById(userId).select('-password')
   res.send(user)
   
 } catch (error) {
+  // eslint-disable-next-line no-unused-expressions
   console.log(error.message),
     res.status(500).send("Internal server error.");
   
