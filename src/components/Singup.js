@@ -8,7 +8,7 @@ const Singup = (props) => {
   const handleSubmit = async (e) => {
     const { name, email, password } = credentials
     e.preventDefault();
-    const response = await fetch("https://inotebook-umber-omega.vercel.app/signup/api/auth/createuser", {
+    const response = await fetch("https://inotebook-umber-omega.vercel.app/api/auth/createuser", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
