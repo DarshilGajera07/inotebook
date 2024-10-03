@@ -10,7 +10,6 @@ router.get('/fetchallnotes', fetchuser, async (req, res) => {
             const notes = await Note.find({ user: req.user.id });
             res.json(notes)
       } catch (error) {
-            // eslint-disable-next-line no-unused-expressions
             console.log(error.message),
                   res.status(500).send("Internal server error.");
       }
