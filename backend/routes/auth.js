@@ -51,7 +51,7 @@ router.post('/createuser', [
       res.json({success, authtoken })
 
     } catch (error) {
-      console.log(error.message),
+      console.log(error.message);
         res.status(500).send(success,"Internal server error.");
     }
 
@@ -94,8 +94,7 @@ router.post('/login', [
         res.json({ success, authtoken })
 
         }  catch (error) {
-      // eslint-disable-next-line no-unused-expressions
-      console.log(error.message),
+      console.log(error.message);
         res.status(500).send("Internal server error.");
     }
 
@@ -109,8 +108,7 @@ try {
   res.send(user)
   
 } catch (error) {
-  // eslint-disable-next-line no-unused-expressions
-  console.log(error.message),
+  console.log(error.message);
     res.status(500).send("Internal server error.");
   
 }
